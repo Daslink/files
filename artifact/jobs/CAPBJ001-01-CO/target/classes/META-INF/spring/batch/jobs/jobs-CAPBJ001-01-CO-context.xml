@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/batch" xmlns:beans="http://www.springframework.org/schema/beans" xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <job id="CAPBJ001-01-CO" job-repository="jobRepository" incrementer="defaultIncrementer">
+    <description>Proceso batch</description>
+    <listeners>
+      <listener ref="interceptorJobExecutionListener"/>
+    </listeners>
+    <step id="ref_step_1" parent="step_1">
+      <next on="*" to="ref_step_2"/>
+    </step>
+    <step id="ref_step_2" parent="step_2"/>
+  </job>
+  <step id="step_1">
+    <tasklet ref="step1"/>
+    <listeners>
+      <listener ref="interceptorStepExecutionListener"/>
+      <listener ref="logPlannerInterceptorStepExecutionListener"/>
+    </listeners>
+  </step>
+  <step id="step_2">
+    <tasklet ref="step2"/>
+    <listeners>
+      <listener ref="interceptorStepExecutionListener"/>
+      <listener ref="logPlannerInterceptorStepExecutionListener"/>
+    </listeners>
+  </step>
+</beans:beans>

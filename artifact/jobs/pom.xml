@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.bbva.capb</groupId>
+    <artifactId>UF_BATCH_CAPB</artifactId>
+    <version>0.0.0</version>
+    <relativePath>../../</relativePath>
+  </parent>
+  <groupId>com.bbva.capb</groupId>
+  <artifactId>JOBS</artifactId>
+  <version>0.0.0</version>
+  <packaging>pom</packaging>
+  <name>JOBS</name>
+  <modules>
+    <module>CAPBJ001-01-CO</module>
+  </modules>
+</project>

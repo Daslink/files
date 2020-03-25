@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Step1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CAPBJ001-01-CO</a> &gt; <a href="index.source.html" class="el_package">com.bbva.capb.batch</a> &gt; <span class="el_source">Step1.java</span></div><h1>Step1.java</h1><pre class="source lang-java linenums">package com.bbva.capb.batch;
+
+import org.apache.log4j.Logger;
+import org.springframework.batch.core.StepContribution;
+import org.springframework.batch.core.scope.context.ChunkContext;
+import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.repeat.RepeatStatus;
+import com.bbva.elara.batch.contextutils.ContextUtils;
+
+<span class="nc" id="L10">public class Step1 implements Tasklet {</span>
+
+	private ContextUtils contextUtils;
+	
+	public RepeatStatus execute(StepContribution contribution,
+			ChunkContext chunkContext) throws Exception {
+	
+<span class="nc" id="L17">		Logger log = contextUtils.getLOGGER(chunkContext, getClass());</span>
+
+		// TODO Auto-generated method stub
+<span class="nc" id="L20">		return null;</span>
+	}
+
+	public void setContextUtils(ContextUtils contextUtils) {
+<span class="nc" id="L24">		this.contextUtils = contextUtils;</span>
+<span class="nc" id="L25">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

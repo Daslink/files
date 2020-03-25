@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd       http://www.springframework.org/schema/context       http://www.springframework.org/schema/context/spring-context.xsd       http://www.springframework.org/schema/tx        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- CAPBJ001-01-CO-beans.xml -->
+	
+	<!-- Set to the required transaction manager -->
+	<bean class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" id="transactionManager"/>
+
+	<bean class="org.springframework.batch.core.scope.StepScope"/>
+	
+	<bean class="com.bbva.elara.batch.launcher.SimpleJobLauncherBean" id="jobLauncher">
+		<property name="job" ref="CAPBJ001-01-CO"/>
+		<property name="batchLauncher" ref="batchLauncher"/>
+		<property name="defaultIncrementer" ref="defaultIncrementer"/>		
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+<bean class="com.bbva.capb.batch.Step1" id="step1" scope="step">
+<property name="contextUtils" ref="contextUtils"/>
+</bean>
+<bean class="com.bbva.capb.batch.Step2" id="step2" scope="step">
+<property name="contextUtils" ref="contextUtils"/>
+</bean>
+</beans>
