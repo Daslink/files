@@ -23,7 +23,7 @@ public class Step1 implements Tasklet {
 	public RepeatStatus execute(StepContribution contribution,
 			ChunkContext chunkContext) throws Exception {
 	
-		Logger log = contextUtils.getLOGGER(chunkContext, getClass());
+		//Logger log = contextUtils.getLOGGER(chunkContext, getClass());
 		
 		String rutaFicheroUno = 
 				"C:\\Users\\hdramos\\Downloads\\IDE_APX_win64\\IDE_APX_win64\\workspace\\UF_BATCH_CAPB\\ListadoTarjetas2.txt";

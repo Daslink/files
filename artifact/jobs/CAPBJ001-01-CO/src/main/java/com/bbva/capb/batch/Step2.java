@@ -20,7 +20,7 @@ public class Step2 implements Tasklet {
 
 	public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
-		Logger log = contextUtils.getLOGGER(chunkContext, getClass());
+		// Logger log = contextUtils.getLOGGER(chunkContext, getClass());
 
 		String rutaFicheroUno = "C:\\Users\\hdramos\\Downloads\\IDE_APX_win64\\IDE_APX_win64\\workspace\\UF_BATCH_CAPB\\ListadoTarjetas2Ordenado.txt";
 		String rutaFicheroDos = "C:\\Users\\hdramos\\Downloads\\IDE_APX_win64\\IDE_APX_win64\\workspace\\UF_BATCH_CAPB\\ListProdAsocOrdenado.txt";
@@ -31,25 +31,29 @@ public class Step2 implements Tasklet {
 	}
 
 	private void leerFicheros(String rutaUno, String rutaDos) throws IOException, FileNotFoundException {
-		String lineaUno = null;
-		String lineaDos = null;
 		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(
-				 "C:\\Users\\hdramos\\Downloads\\IDE_APX_win64\\IDE_APX_win64\\workspace\\UF_BATCH_CAPB\\lineaBalance.txt")));
+				"C:\\Users\\hdramos\\Downloads\\IDE_APX_win64\\IDE_APX_win64\\workspace\\UF_BATCH_CAPB\\lineaBalance.txt")));
 		BufferedReader bfUno = new BufferedReader(new FileReader(rutaUno));
 		BufferedReader bfDos = new BufferedReader(new FileReader(rutaDos));
 
-		
-		while ((lineaUno = bfUno.readLine()) != null && (lineaDos = bfDos.readLine()) != null) {
+		String lineaUno = bfUno.readLine();
+		String lineaDos = bfDos.readLine();
+
+		while ((lineaUno) != null && (lineaDos) != null) {
 			String datosUno[] = lineaUno.split(";");
 			String datosDos[] = lineaDos.split(";");
-			while (Long.parseLong(datosUno[0]) > Long.parseLong(datosDos[0])) {
-				if (Long.parseLong(datosUno[0]) == Long.parseLong(datosDos[0])) {
-					 bw.write(datosUno[3]+";"+datosUno[4]+";"+datosDos[3]+";"+datosDos[4]+";"+(datosUno[1]+datosUno[2]+";"+validarTarjetaAsociada(datosDos[6], datosUno[2])));
-				}
-			}
-			while (Long.parseLong(datosUno[0]) < Long.parseLong(datosDos[0])) {
-				if (Long.parseLong(datosUno[0]) == Long.parseLong(datosDos[0])) {
-					 bw.write(datosUno[3]+";"+datosUno[4]+";"+datosDos[3]+";"+datosDos[4]+";"+(datosUno[1]+datosUno[2]+";"+validarTarjetaAsociada(datosDos[6], datosUno[2])));
+			if (datosUno[0].equals(datosDos[0])) {
+				bw.write(datosUno[3] + ";" + datosUno[4] + ";" + datosDos[1] + ";" + datosDos[2] + ";"
+						+ (datosUno[1] + datosUno[2] + ";" + validarTarjetaAsociada(datosDos[3], datosUno[2])) + "\n");
+				lineaUno = bfUno.readLine();
+				lineaDos = bfDos.readLine();
+			} else {
+				if (Long.parseLong(datosUno[0]) > Long.parseLong(datosDos[0])) {
+					lineaDos = bfDos.readLine();
+				} else {
+					if (Long.parseLong(datosUno[0]) < Long.parseLong(datosDos[0])) {
+						lineaUno = bfUno.readLine();
+					}
 				}
 			}
 		}
@@ -69,11 +73,11 @@ public class Step2 implements Tasklet {
 			return tarjetaAsociada;
 		}
 		if (tarjetaAsociada.contains("W")) {
-			tarjetaAsociada = tarjetaAsociada.replace('X', IAI.charAt(0));
+			tarjetaAsociada = tarjetaAsociada.replace('W', IAI.charAt(0));
 			return tarjetaAsociada;
 		}
 		if (tarjetaAsociada.contains("Z")) {
-			tarjetaAsociada = tarjetaAsociada.replace('X', '9');
+			tarjetaAsociada = tarjetaAsociada.replace('Z', '9');
 			return tarjetaAsociada;
 		}
 
